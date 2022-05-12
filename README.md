@@ -14,16 +14,16 @@ https://drive.google.com/file/d/1GNi5spebxDOVB5Snx8_OV2fRVeODQBJ4/view?usp=shari
 ![image](https://user-images.githubusercontent.com/86009873/168170184-5de7f6df-7dfb-46e7-928a-b552b4c35cdb.png)
 4. Insert the wanted date(tanggal), month(bulan) and year(tahun) without any leading 0s(e.g. instead of month 07 for july just write 7) and click confirm
 5. The pop up request the user to choose a directory, where they want the powerpoint to be saved at
-6. Wait for the script to end and check the directory that you choosed. There should be a new powerpoint there which is called PPT_Misa.pptx
-<br />
-For Python users: <br />
+6. Wait for the script to end and check the directory that you choosed. There should be a new powerpoint there which is called PPT_Misa.pptx  
+
+For Python users:  
 Simply make sure that you have all the required libraries and python3(Python2 may not work because of syntax differences and compatibility) and run the script using your favourite IDE. 
 I used python 3.9.7 in my case. The libraries required are Beautifulsoup, Requests, Python-pptx and also tkinter.
-It is also possible to input the data in the script directly without the GUI by commenting out the tkinter part and changing the variable tanggal,bulan and tahun directly.
-<br />
-For non-windows user that want to have an executable as well: <br />
+It is also possible to input the data in the script directly without the GUI by commenting out the tkinter part and changing the variable tanggal,bulan and tahun directly.  
+
+For non-windows user that want to have an executable as well:  
 Download the script PPT-Misa.py and default pptx and install all the required modules + pyinstaller.
-Open a command prompt and go to the directory with the python script and default powerpoint. Run the command:
-pyinstaller --add-data "Default.pptx;." PPT-Misa.py
-When done, this will create a dist folder which contains another PPT-Misa folder. This PPT-Misa folder is what you need.
+Open a command prompt and go to the directory with the python script and default powerpoint. Run the command:  
+__pyinstaller --add-data "Default.pptx;." PPT-Misa.py__  
+When done, this will create a dist folder which contains another PPT-Misa folder. This PPT-Misa folder is what you need. <br />
 Note: Do not use the --onefile option since this caused the executable to not work in my case.
