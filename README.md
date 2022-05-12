@@ -12,7 +12,7 @@ https://drive.google.com/file/d/1GNi5spebxDOVB5Snx8_OV2fRVeODQBJ4/view?usp=shari
 2. Extract the zip file
 3. Run PPT_misa.exe. The GUI will appear as below:
 ![image](https://user-images.githubusercontent.com/86009873/168170184-5de7f6df-7dfb-46e7-928a-b552b4c35cdb.png)
-4. Insert the wanted date(tanggal), month(bulan) and year(tahun) without any leading 0s(e.g. instead of month 07 for june just write 7) and click confirm
+4. Insert the wanted date(tanggal), month(bulan) and year(tahun) without any leading 0s(e.g. instead of month 07 for july just write 7) and click confirm
 5. The pop up request the user to choose a directory, where they want the powerpoint to be saved at
 6. Wait for the script to end and check the directory that you choosed. There should be a new powerpoint there which is called PPT_Misa.pptx
 
