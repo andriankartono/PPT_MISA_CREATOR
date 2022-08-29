@@ -1,26 +1,35 @@
-from msilib.schema import Directory
 from bs4 import BeautifulSoup
 import requests
 from pptx import Presentation
 from pptx.util import Pt
 import tkinter as tk
 from tkinter import ttk, filedialog
+import datetime
+
+#Get the date of the closest sunday to use as default value
+today= datetime.date.today()
+while today.weekday() != 6:
+    today += datetime.timedelta(1)
 
 #GUI Input
 win= tk.Tk()
 
+#Variables that will be defined by user Input
 tanggal=0
 bulan=0
 tahun=0
+word_limit = 500
+fontsize=24
 
 directory = "D:\\"
 
 def get_text():
-   global entry_tanggal, entry_bulan, entry_tahun, directory
-   global tanggal, bulan, tahun
+   global entry_tanggal, entry_bulan, entry_tahun, directory, entry_fontsize, entry_wordcount
+   global tanggal, bulan, tahun, word_limit, fontsize
    tanggal= entry_tanggal.get()
    bulan= entry_bulan.get()
    tahun= entry_tahun.get()
+   fontsize= int(entry_fontsize.get())
    directory = filedialog.askdirectory()
    win.quit()
 
@@ -34,26 +43,42 @@ L1.grid(row=1,column=0)
 
 entry_tanggal= tk.Entry(win)
 entry_tanggal.focus_set()
+entry_tanggal.insert(0, f"{today.day}")
 entry_tanggal.grid(row=1,column=1)
 
 L2 = tk.Label(text="Bulan")
 L2.grid(row=2, column=0)
 
 entry_bulan= tk.Entry(win)
+entry_bulan.insert(0, f"{today.month}")
 entry_bulan.grid(row=2, column=1)
 
 L3 = tk.Label(text="Tahun")
 L3.grid(row=3,column=0)
 
 entry_tahun = tk.Entry(win)
+entry_tahun.insert(0, f"{today.year}")
 entry_tahun.grid(row=3,column=1)
 
-#Create a Button to validate Entry Widget
-ttk.Button(win, text= "Confirm",width= 20, command= get_text).grid(column=1, row=4)
+L4 = tk.Label(text="Fontsize")
+L4.grid(row=4,column=0)
 
+entry_fontsize = tk.Entry(win)
+entry_fontsize.grid(row=4,column=1)
+entry_fontsize.insert(0, "28")
+
+L5 = tk.Label(text="Maximum Karakter(termasuk spasi) dalam slide")
+L5.grid(row=5,column=0)
+
+
+entry_wordcount = tk.Entry(win)
+entry_wordcount.grid(row=5,column=1)
+entry_wordcount.insert(0, "500")
+
+#Create a Button to validate Entry Widget
+ttk.Button(win, text= "Confirm",width= 20, command= get_text).grid(column=1, row=6)
 
 win.mainloop()
-word_limit = 600
 
 url=f"http://www.imankatolik.or.id/kalender.php?b={bulan}&t={tahun}"
 base_url= "http://www.imankatolik.or.id"
@@ -102,7 +127,7 @@ for link in links:
         else:
             if (word_counter + len(kalimat) > word_limit):
                 for paragraph in tf.paragraphs:
-                    paragraph.font.size = Pt(20)
+                    paragraph.font.size = Pt(fontsize)
 
                 slide2 = prs.slides.add_slide(prs.slide_layouts[1])
                 shapes = slide2.shapes
@@ -121,6 +146,6 @@ for link in links:
                 word_counter += len(kalimat)
 
     for paragraph in tf.paragraphs:
-        paragraph.font.size = Pt(20)
+        paragraph.font.size = Pt(fontsize)
 
 prs.save(r"{}/PPT_Misa.pptx".format(directory))
